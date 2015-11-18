@@ -73,7 +73,7 @@
 </code></pre></li>
         <li><p><strong>Object</strong></p>
 
-            <p> Provide an object, which will contain an array, and the array can be specified through the <code>locator: 'data'</code>.</p>
+            <p> Provide an object, which will contain an array, and the array can be specified via <code>locator: 'data'</code>.</p>
 
 <pre><code> {
     data: ['1', '2', '3', '4']
@@ -108,7 +108,7 @@
 </code></pre></li>
         <li><p><strong>URL</strong></p>
 
-            <p> Provide a URL, returns data through the Ajax, each request returns one page of data, the data returned can also be located by <code>locator</code>.</p>
+            <p> Provide a URL, returns data via Ajax, each request returns one page of data, the data returned can also be located by <code>locator</code>.</p>
 
             <p> If URL is file, HTTP or HTTPS protocol, will using <code>jsonp</code> to send requests, otherwise Ajax.</p>
 
@@ -154,7 +154,7 @@
     }
 </code></pre>
 
-    <p>Please note that the data through Ajax will apply the same rules.</p>
+    <p>Please note that the data via Ajax will apply the same rules.</p>
 
     <h3>totalNumber <em>number (default <code>1</code>)</em></h3>
 
@@ -172,11 +172,11 @@
 
     <h3>pageRange <em>number (default <code>2</code>)</em></h3>
 
-    <p>Visible page number range, this means that the amount on both sides of the selected page. For example, if the selected page number is <code>6</code>, and pageRange set to 2, then the pagination bar will be displayed as like this '1 ... 4 5<code>6</code>7 8'.</p>
+    <p>Range of visible page number, this means that the amount on both sides of the selected page. For example, if the selected page number is <code>6</code>, and pageRange set to 2, then the pagination bar will be displayed as like this '1 ... 4 5<code>6</code>7 8'.</p>
 
     <h3>callback <em>function(data, pagination)</em></h3>
 
-    <p>Callback of each pagination. Useful for handling the result data.</p>
+    <p>Callback of each paging. Useful for process the result data before rendered.</p>
 
     <p>The <code>callback</code> function will get two parameters</p>
 
@@ -357,7 +357,7 @@
 
     <p>ClassName of the 'ul' element that contained by the Pagination element.</p>
 
-    <h2>Customisable text</h2>
+    <h2>Customizable text</h2>
 
     <h3>prevText <em>string</em></h3>
 
@@ -550,9 +550,11 @@
 
     <p>If you think the use of the <code>link</code> would be better, you can set this option to <code>false</code> to prevent insertion behavior, and references your css file to the <code>link</code> element.</p>
 
-    <p>The default styles: <a href="#d">pagination.css</a> <a href="#d">pagination.less</a>, but you can easily write these styles to apply your own.</p>
+    <p>The default styles: <a href="../dist/2.0.6/pagination.css">pagination.css</a> <a href="../dist/2.0.6/pagination.less">pagination.less</a>, but you can easily write these styles to apply your own.</p>
 
-    <p>Note, make sure that use <code>pagination-with-styles.js</code> before set this option.</p>
+    <p><s>Note, make sure that use <code>pagination-with-styles.js</code> before set this option.</s></p>
+
+    <p>Note, this will not be supported from v2.0.6, please use Link to import css.</p>
 
     <h1>Methods</h1>
 

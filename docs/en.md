@@ -15,7 +15,7 @@ Data source supports 4 formats.
 	
 2. **Object**
 	
-	Provide an object, which will contain an array, and the array can be specified through the `locator: 'data'`.
+	Provide an object, which will contain an array, and the array can be specified via `locator: 'data'`.
 		
 		{
 			data: ['1', '2', '3', '4']
@@ -49,7 +49,7 @@ Data source supports 4 formats.
 		
 4. **URL**
 
-	Provide a URL, returns data through the Ajax, each request returns one page of data, the data returned can also be located by `locator`.
+	Provide a URL, returns data via Ajax, each request returns one page of data, the data returned can also be located by `locator`.
 	
 	
 	If URL is file, HTTP or HTTPS protocol, will using `jsonp` to send requests, otherwise Ajax.
@@ -95,7 +95,7 @@ locator: function(){
 }
 ```
 
-Please note that the data through Ajax will apply the same rules.
+Please note that the data via Ajax will apply the same rules.
 
 
 ### totalNumber <em>number (default `1`)</em>
@@ -110,10 +110,10 @@ Specify the page number at initialization.
 Entries of per page.
 
 ### pageRange <em>number (default `2`)</em>
-Visible page number range, this means that the amount on both sides of the selected page. For example, if the selected page number is `6`, and pageRange set to 2, then the pagination bar will be displayed as like this '1 ... 4 5`6`7 8'.
+Range of visible page number, this means that the amount on both sides of the selected page. For example, if the selected page number is `6`, and pageRange set to 2, then the pagination bar will be displayed as like this '1 ... 4 5`6`7 8'.
 
 ### callback <em>function(data, pagination)</em>
-Callback of each pagination. Useful for handling the result data.
+Callback of each paging. Useful for process the result data before rendered.
 
 The `callback` function will get two parameters
 
@@ -217,7 +217,7 @@ ClassName of the disabled page number button. Default is `disabled`.
 ### ulClassName <em>string</em>
 ClassName of the 'ul' element that contained by the Pagination element.
 
-## Customisable text
+## Customizable text
 
 ### prevText <em>string</em>
 The text to display for the `previous` button. Default is `&laquo;`. That is the symbol '&laquo;'.
@@ -347,9 +347,11 @@ Pagination comes with style content, by default, the style content will be inser
 
 If you think the use of the `link` would be better, you can set this option to `false` to prevent insertion behavior, and references your css file to the `link` element.
 
-The default styles: [pagination.css](#d) [pagination.less](#d), but you can easily write these styles to apply your own.
+The default styles: [pagination.css](../dist/2.0.6/pagination.css) [pagination.less](../dist/2.0.6/pagination.less), but you can easily write these styles to apply your own.
 
-Note, make sure that use `pagination-with-styles.js` before set this option.
+<s>Note, make sure that use `pagination-with-styles.js` before set this option.</s>
+
+Note, this will not be supported from v2.0.6, please use Link to import css.
 
 # Methods
 After Pagination is constructed, you can modify the behavior using the available public methods.

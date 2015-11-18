@@ -331,9 +331,11 @@ beforeSend | function | 发起请求之前的回调函数，可用于发送前�
 
 如果你觉得使用 `link` 外链样式文件更好，那么可以将此项设置为 `false`来阻止插入行为，并将你的样式文件以 `link` 方式引用
 
-默认的样式在这下载 [pagination.css](#d) [pagination.less](#d)，但你完全可以自己编写这些样式
+默认的样式在这下载 [pagination.css](../dist/2.0.6/pagination.css) [pagination.less](../dist/2.0.6/pagination.less)，但你完全可以自己编写这些样式
 
-注意，只有使用带样式版本的分页组件，此项设置才会生效，即 `pagination-with-styles.js`
+<s>注意，只有使用带样式版本的分页组件，此项设置才会生效，即 `pagination-with-styles.js`</s>
+
+注意，从 2.0.6 起，不再支持 inlineStyle 配置，样式需要单独用 Link 标签引入
 
 # Methods
 

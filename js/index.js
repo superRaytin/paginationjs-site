@@ -191,7 +191,6 @@ $(function(){
                 pageSize: 5,
                 showGoInput: true,
                 showGoButton: true,
-                triggerPagingOnInit: false,
                 className: 'paginationjs-big'
             }
         }

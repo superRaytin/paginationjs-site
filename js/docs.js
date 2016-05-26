@@ -1,9 +1,9 @@
 // TODO
 
-$(function(){
+$(function() {
 
     var ctrl = {
-        scrollHandler: function(){
+        scrollHandler: function() {
             var self = this;
             var win = $(window);
             var docs = $('.docs');
@@ -12,7 +12,7 @@ $(function(){
             var headerHeight = $('.documentation').outerHeight() + $('.topbar').outerHeight();
 
             var positions = [];
-            $('h3', docs).each(function(){
+            $('h3', docs).each(function() {
                 var current = $(this);
                 var text = current.text();
                 var anchor = text.split(' ')[0];
@@ -25,25 +25,25 @@ $(function(){
             var positionLength = positions.length;
             var timer;
 
-            win.scroll(function(){
+            win.scroll(function() {
                 var scrollTop = win.scrollTop();
 
                 navContainer.css('top', scrollTop >= headerHeight ? 0 : Math.min(headerHeight, headerHeight - scrollTop));
 
-                if(self.noscroll){
+                if (self.noscroll) {
                     self.noscroll = false;
                     return;
                 }
 
-                if(timer) clearTimeout(timer);
-                timer = setTimeout(function(){
-                    for(var i = 0; i < positionLength; i++){
-                        if(scrollTop < positions[0]){
+                if (timer) clearTimeout(timer);
+                timer = setTimeout(function() {
+                    for (var i = 0; i < positionLength; i++) {
+                        if (scrollTop < positions[0]) {
                             self.backNav();
                             return;
                         }
 
-                        if( (positions[i] <= scrollTop) && (positions[i + 1] > scrollTop) ){
+                        if ( (positions[i] <= scrollTop) && (positions[i + 1] > scrollTop) ) {
                             self.selectNav(i);
                         }
                     }
@@ -53,7 +53,7 @@ $(function(){
             win.trigger('scroll');
         },
 
-        observer: function(){
+        observer: function() {
             var self = this;
 
             self.addAnchors();
@@ -63,7 +63,7 @@ $(function(){
             var navTitle = $('.nav-section-title');
             var gotoTop = $('#gototop');
 
-            navItem.on('click', function(){
+            navItem.on('click', function() {
                 var current = $(this);
                 var index = current.attr('rel');
 
@@ -73,13 +73,13 @@ $(function(){
                 self.selectNav(index);
             });
 
-            navTitle.on('click', function(){
+            navTitle.on('click', function() {
                 var current = $(this);
                 self.selectNav(current.next().attr('rel'));
                 self.noscroll = true;
             });
 
-            gotoTop.on('click', function(){
+            gotoTop.on('click', function() {
                 $('body').get(0).scrollTop = 0;
             });
 
@@ -88,10 +88,10 @@ $(function(){
         },
 
         // add anchors
-        addAnchors: function(){
+        addAnchors: function() {
             var docs = $('.docs');
 
-            $('h3', docs).each(function(){
+            $('h3', docs).each(function() {
                 var current = $(this);
                 var anchor = current.text().split(' ')[0];
 
@@ -100,32 +100,32 @@ $(function(){
         },
 
         // add nav
-        addNav: function(){
+        addNav: function() {
             var docs = $('.docs');
             var navContainer = $('#J-nav');
             var newNav = '';
 
-            var hash = (function(){
+            var hash = (function() {
                 var result = {};
                 var currentItem;
 
-                $('h1, h2, h3', docs).each(function(){
+                $('h1, h2, h3', docs).each(function() {
                     var current = $(this);
                     var tagName = this.tagName.toLowerCase();
                     var text = current.text();
                     var anchor = text.split(' ')[0];
 
-                    if(tagName === 'h1'){
-                        if(text !== 'Constructor' && text !== 'Configuring Defaults'){
+                    if (tagName === 'h1') {
+                        if (text !== 'Constructor' && text !== 'Configuring Defaults') {
                             currentItem = result[text] = result[text] || [];
                             current.before('<a name="'+ text.replace(' ', '') +'"></a>');
                         }
                     }
-                    else if(tagName === 'h2'){
+                    else if (tagName === 'h2') {
                         currentItem = result[text] = result[text] || [];
                         current.before('<a name="'+ text.replace(' ', '') +'"></a>');
                     }
-                    else if(tagName === 'h3'){
+                    else if (tagName === 'h3') {
                         currentItem.push(anchor);
                     }
                 });
@@ -133,12 +133,12 @@ $(function(){
                 return result;
             })();
 
-            for(var cat in hash){
-                if(hash.hasOwnProperty(cat)){
+            for (var cat in hash) {
+                if (hash.hasOwnProperty(cat)) {
                     newNav += '<div class="nav-section">';
                     newNav += '<div class="nav-section-title"><a href="#'+ cat.replace(' ', '') +'">'+ cat +'<\/a><\/div>';
 
-                    $.each(hash[cat], function(index, name){
+                    $.each(hash[cat], function(index, name) {
                         newNav += '<a class="nav-section-item" href="#'+ name +'">'+ name +'<\/a>';
                     });
 
@@ -150,7 +150,7 @@ $(function(){
         },
 
         // select nav
-        selectNav: function(index){
+        selectNav: function(index) {
             var navContainer = $('#J-nav');
             var navItem = $('.nav-section-item', navContainer);
 
@@ -160,7 +160,7 @@ $(function(){
         },
 
         // nav init
-        backNav: function(){
+        backNav: function() {
             var navContainer = $('#J-nav');
             var navSection = $('.nav-section', navContainer);
             var navItem = $('.nav-section-item', navContainer);
@@ -187,13 +187,13 @@ $(function(){
             });
         },
 
-        prettyprint: function(){
+        prettyprint: function() {
             $('pre').addClass('prettyprint linenums');
 
             window.prettyPrint && prettyPrint();
         },
 
-        init: function(){
+        init: function() {
             ctrl.observer();
             ctrl.prettyprint();
             ctrl.insertSkin();

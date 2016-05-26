@@ -1,21 +1,19 @@
-// TODO
+$(function() {
 
-$(function(){
-
-    var generateData = function(number){
+    var generateData = function(number) {
         var result = [];
 
-        for(var i = 1; i < number + 1; i++){
+        for (var i = 1; i < number + 1; i++) {
             result.push(i);
         }
 
         return result;
     };
 
-    var generateObjData = function(number){
+    var generateObjData = function(number) {
         var result = [];
 
-        for(var i = 1; i < number + 1; i++){
+        for (var i = 1; i < number + 1; i++) {
             result.push({a: i});
         }
 
@@ -92,7 +90,7 @@ $(function(){
                 pageSize: 20,
                 className: 'paginationjs-big',
                 ajax: {
-                    beforeSend: function(){
+                    beforeSend: function() {
                         $('#demo3').find('.data-container').html('<div class="loading">Loading data from flickr.com ...</div>');
                     }
                 }
@@ -117,9 +115,9 @@ $(function(){
                 dataSource: generateData(100),
                 pageSize: 8,
                 className: 'paginationjs-big',
-                formatResult: function(data){
+                formatResult: function(data) {
                     var result = [];
-                    for(var i = 0, len = data.length; i < len; i++){
+                    for (var i = 0, len = data.length; i < len; i++) {
                         result.push(data[i] + ' - good guys');
                     }
                     return result;
@@ -134,24 +132,23 @@ $(function(){
                 dataSource: generateObjData(100),
                 pageSize: 5,
                 className: 'paginationjs-big',
-                formatResult: function(data){
-                    for(var i = 0, len = data.length; i < len; i++){
+                formatResult: function(data) {
+                    for (var i = 0, len = data.length; i < len; i++) {
                         data[i].a = data[i].a + ' - bad guys';
                     }
                 },
-                callback: function(data){
+                callback: function(data) {
                     var paginationWrapper = $('#demo9');
                     var dataContainer = $('.data-container', paginationWrapper);
 
                     var html = '<ul>';
 
-                    $.each(data, function(index, item){
+                    $.each(data, function(index, item) {
                         html += '<li>'+ item.a +'</li>';
                     });
 
                     html += '</ul>';
 
-                    //console.log(data);
                     dataContainer.html(html);
                 }
             }
@@ -226,7 +223,7 @@ $(function(){
 
     var ctrl = {
 
-        createDemo: function(config){
+        createDemo: function(config) {
 
             var self = this;
             var id = config.id;
@@ -234,7 +231,7 @@ $(function(){
             var anchor = config.anchor;
             var options = config.options;
 
-            if(!id){
+            if (!id) {
                 id = Math.floor(Math.random() * 1000);
             }
 
@@ -242,7 +239,7 @@ $(function(){
             var demoWrapper = $('#J-demo');
             var templates = $('#template-' + key);
 
-            if(!templates.length){
+            if (!templates.length) {
                 templates = $('#template-demo');
             }
 
@@ -263,8 +260,8 @@ $(function(){
                 'max-height': Math.min(options.pageSize * 35, 285)
             });
 
-            !options.callback && (options.callback = function(data, pagination){
-                if(window.console) console.log(data, pagination);
+            !options.callback && (options.callback = function(data, pagination) {
+                if (window.console) console.log(data, pagination);
 
                 dataContainer.html(self.template(data));
             });
@@ -272,28 +269,27 @@ $(function(){
             paginationWrapper.pagination(options);
         },
 
-        createDemos: function(){
+        createDemos: function() {
             var self = this;
             var demoWrapper = $('#J-demo');
 
             demoWrapper.html('');
 
-            $.each(demoConfigs, function(index, config){
+            $.each(demoConfigs, function(index, config) {
                 self.createDemo(config);
             });
         },
 
-        template: function(data){
+        template: function(data) {
             var html = '<ul>';
 
-            if(data[0].published || data[0].title){
+            if (data[0].published || data[0].title) {
                 // data from flickr
-                $.each(data, function(index, item){
+                $.each(data, function(index, item) {
                     html += '<li><a href="'+ item.link +'">'+ (item.title || item.link) +'<\/a><\/li>';
                 });
-            }
-            else{
-                $.each(data, function(index, item){
+            } else {
+                $.each(data, function(index, item) {
                     html += '<li>'+ item +'</li>';
                 });
             }
@@ -303,11 +299,11 @@ $(function(){
             return html;
         },
 
-        addHooks: function(){
+        addHooks: function() {
             var eventsContainer = $('#J-events-container');
             var html = '';
 
-            $.each(hooks, function(index, hook){
+            $.each(hooks, function(index, hook) {
                 html += '<div class="event-item">' +
                     '<label><input type="checkbox" value="'+ hook +'" id="checkbox-'+ hook +'" checked> '+ hook +'<\/label>' +
                     '<\/div>'
@@ -316,12 +312,12 @@ $(function(){
             eventsContainer.html(html);
         },
 
-        registerHooks: function(){
+        registerHooks: function() {
             var start = (new Date()).getTime();
             var i = 0;
 
-            function logEvent(event, data){
-                if(!$('#checkbox-' + event).is(':checked')) return;
+            function logEvent(event, data) {
+                if (!$('#checkbox-' + event).is(':checked')) return;
 
                 var logContainer = $('#J-log-container');
 
@@ -331,21 +327,20 @@ $(function(){
                 var logs = [i, "@" + diff / 1000, "[" + event + "]" ];
 
                 var argstr = '&nbsp;Args: ';
-                for(var j = 0, len = data.length; j < data.length; j++){
+                for (var j = 0, len = data.length; j < data.length; j++) {
                     try{
                         argstr += JSON.stringify(data[j]);
-                    }
-                    catch(e){
+                    } catch(e) {
                         argstr += data[j].toString();
                     }
 
-                    if(typeof argstr === 'undefined') continue;
+                    if (typeof argstr === 'undefined') continue;
 
-                    if(argstr.length > 32){
+                    if (argstr.length > 32) {
                         argstr += Object.prototype.toString.call(data[j]);
                     }
 
-                    if(j < len - 1){
+                    if (j < len - 1) {
                         argstr += ',';
                     }
 
@@ -354,7 +349,7 @@ $(function(){
                     argstr = '';
                 }
 
-                if(window.console){
+                if (window.console) {
                     console.log(i, "@" + diff / 1000, "[" + event + "]", data);
                 }
 
@@ -366,20 +361,20 @@ $(function(){
             }
 
             var config = demoConfigs[demoConfigs.length - 1].options;
-            $.each(hooks, function(index, hook){
-                config[hook] = function(){
+            $.each(hooks, function(index, hook) {
+                config[hook] = function() {
                     logEvent(hook, arguments);
                 };
             });
         },
 
-        prettyprint: function(){
+        prettyprint: function() {
             $('pre').addClass('prettyprint linenums');
 
             window.prettyPrint && prettyPrint();
         },
 
-        observer: function(){
+        observer: function() {
             this.registerHooks();
             this.createDemos();
             this.addHooks();
@@ -391,11 +386,11 @@ $(function(){
             var eventsContainer = $('#J-events-container');
             var gotoTop = $('#gototop');
 
-            logClear.on('click', function(){
+            logClear.on('click', function() {
                 $('#J-log-container').empty();
             });
 
-            actions.on('click', '.button', function(){
+            actions.on('click', '.button', function() {
                 var current = $(this);
                 var action = current.attr('data-action');
                 var type = current.attr('data-type');
@@ -406,11 +401,11 @@ $(function(){
                 if (type === 'get') {
                     result = container.pagination(action);
 
-                    if(action === 'getSelectedPageData'){
+                    if (action === 'getSelectedPageData') {
                         try {
                             result = JSON.stringify(result);
                         }
-                        catch (e){}
+                        catch (e) {}
                     }
 
                     alert(result);
@@ -425,20 +420,20 @@ $(function(){
                 }
             });
 
-            checkAll.on('change', function(){
-                $('input[type="checkbox"]', eventsContainer).each(function(){
+            checkAll.on('change', function() {
+                $('input[type="checkbox"]', eventsContainer).each(function() {
                     var current = $(this);
                     current.prop('checked', !current.is(':checked'));
                 });
             });
 
-            gotoTop.on('click', function(){
+            gotoTop.on('click', function() {
                 $('body').get(0).scrollTop = 0;
             });
 
         },
 
-        init: function(){
+        init: function() {
             ctrl.observer();
         }
     };

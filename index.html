@@ -13,9 +13,6 @@
 <body>
 
 <a href="https://github.com/superRaytin/paginationjs">
-    <!--
-    <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png" alt="Fork me on GitHub">
-    -->
     <img style="position: absolute; top: 0; right: 0; border: 0;" src="images/forkme_right_green_007200.png" alt="Fork me on GitHub">
 </a>
 
@@ -61,7 +58,7 @@
         <div class="inner-right code">
 <pre><code>$('#demo').pagination({
     dataSource: [1, 2, 3, 4, 5, 6, 7, ... , 195],
-    callback: function(data, pagination){
+    callback: function(data, pagination) {
         // template method of yourself
         var html = template(data);
         dataContainer.html(html);
@@ -82,7 +79,7 @@
     dataSource: [1, 2, 3, 4, 5, 6, 7, ... , 35],
     pageSize: 5,
     pageNumber: 3,
-    callback: function(data, pagination){
+    callback: function(data, pagination) {
         // template method of yourself
         var html = template(data);
         dataContainer.html(html);
@@ -106,11 +103,11 @@
     totalNumber: 120,
     pageSize: 20,
     ajax: {
-        beforeSend: function(){
+        beforeSend: function() {
             dataContainer.html('Loading data from flickr.com ...');
         }
     },
-    callback: function(data, pagination){
+    callback: function(data, pagination) {
         // template method of yourself
         var html = template(data);
         dataContainer.html(html);
@@ -133,7 +130,7 @@
     showNavigator: true,
     formatNavigator: '&lt;span style="color: #f00"&gt;<%= currentPage %>&lt;/span&gt; st/rd/th, <%= totalPage %> pages, <%= totalNumber %> entries',
     position: 'top',
-    callback: function(data, pagination){
+    callback: function(data, pagination) {
         // template method of yourself
         var html = template(data);
         dataContainer.html(html);
@@ -155,7 +152,7 @@
     pageSize: 5,
     showPageNumbers: false,
     showNavigator: true,
-    callback: function(data, pagination){
+    callback: function(data, pagination) {
         // template method of yourself
         var html = template(data);
         dataContainer.html(html);
@@ -175,14 +172,14 @@
 <pre><code>$('#demo').pagination({
     dataSource: [1, 2, 3, 4, 5, 6, 7, ... , 100],
     pageSize: 8,
-    formatResult: function(data){
+    formatResult: function(data) {
         var result = [];
-        for(var i = 0, len = data.length; i < len; i++){
+        for (var i = 0, len = data.length; i < len; i++) {
             result.push(data[i] + ' - good guys');
         }
         return result;
     },
-    callback: function(data, pagination){
+    callback: function(data, pagination) {
         // template method of yourself
         var html = template(data);
         dataContainer.html(html);
@@ -202,12 +199,12 @@
 <pre><code>$('#demo').pagination({
     dataSource: [{a :1}, {a :2}, {a :3}, {a :4}, ... , {a :50}],
     pageSize: 8,
-    formatResult: function(data){
-        for(var i = 0, len = data.length; i < len; i++){
+    formatResult: function(data) {
+        for (var i = 0, len = data.length; i < len; i++) {
             data[i].a = data[i].a + ' - bad guys';
         }
     },
-    callback: function(data, pagination){
+    callback: function(data, pagination) {
         // template method of yourself
         var html = template(data);
         dataContainer.html(html);
@@ -229,7 +226,7 @@
     pageSize: 5,
     showPrevious: false,
     showNext: false,
-    callback: function(data, pagination){
+    callback: function(data, pagination) {
         // template method of yourself
         var html = template(data);
         dataContainer.html(html);
@@ -251,7 +248,7 @@
     pageSize: 5,
     showGoInput: true,
     showGoButton: true,
-    callback: function(data, pagination){
+    callback: function(data, pagination) {
         // template method of yourself
         var html = template(data);
         dataContainer.html(html);
@@ -274,7 +271,7 @@
     showGoInput: true,
     showGoButton: true,
     formatGoInput: 'go to <%= input %> st/rd/th',
-    callback: function(data, pagination){
+    callback: function(data, pagination) {
         // template method of yourself
         var html = template(data);
         dataContainer.html(html);
@@ -346,7 +343,7 @@
     pageSize: 5,
     autoHidePrevious: true,
     autoHideNext: true,
-    callback: function(data, pagination){
+    callback: function(data, pagination) {
         // template method of yourself
         var html = template(data);
         dataContainer.html(html);
@@ -372,7 +369,6 @@
 <script type="text/javascript" src="js/prettify.min.js"></script>
 <script type="text/javascript" src="dist/2.0.7/pagination.min.js"></script>
 <script type="text/javascript" src="js/index.js"></script>
-
 <script type="text/javascript">
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

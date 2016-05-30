@@ -13,9 +13,6 @@
 <body>
 
 <a href="https://github.com/superRaytin/paginationjs">
-    <!--
-    <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png" alt="Fork me on GitHub">
-    -->
     <img style="position: absolute; top: 0; right: 0; border: 0;" src="../images/forkme_right_green_007200.png" alt="Fork me on GitHub">
 </a>
 
@@ -75,9 +72,10 @@
 
             <p> Provide an object, which will contain an array, and the array can be specified via <code>locator: 'data'</code>.</p>
 
-<pre><code> {
+<pre>
+<code> {
     data: ['1', '2', '3', '4']
-    }
+ }
 </code></pre></li>
         <li><p><strong>Function</strong></p>
 
@@ -85,26 +83,24 @@
 
 <pre><code> dataSource: function(done){
     var result = [];
-
-    for(var i = 1; i &lt; 196; i++){
-    result.push(i);
+    for (var i = 1; i &lt; 196; i++) {
+        result.push(i);
     }
-
     done(result);
-    }
+ }
 </code></pre>
 
             <p> You can also send a request to get data, use <code>done</code> return asynchronous data.</p>
 
-<pre><code> dataSource: function(done){
+<pre><code> dataSource: function(done) {
     $.ajax({
-    type: 'GET',
-    url: '/test.json',
-    success: function(response){
-    done(response);
-    }
+        type: 'GET',
+        url: '/test.json',
+        success: function(response) {
+            done(response);
+        }
     });
-    }
+ }
 </code></pre></li>
         <li><p><strong>URL</strong></p>
 
@@ -134,24 +130,24 @@
 
 <pre><code>{
     data: ['1', '2', '3', '4']
-    }
+}
 </code></pre>
 
     <p>locator uses <a href="https://github.com/component/to-function">to-function</a>, so you may use dot notation to traverse the result array, such as <code>locator: 'a.b'</code>:</p>
 
 <pre><code>{
     a: {b: ['1', '2', '3', '4']}
-    }
+}
 </code></pre>
 
     <p>Using as a function:</p>
 
     <p>Provide a custom function, find the array position, and return.</p>
 
-<pre><code>locator: function(){
+<pre><code>locator: function() {
     // find data and return
     return 'a.b';
-    }
+}
 </code></pre>
 
     <p>Please note that the data via Ajax will apply the same rules.</p>
@@ -180,7 +176,7 @@
 
     <p>The <code>callback</code> function will get two parameters</p>
 
-<pre><code>callback: function(data, pagination){ ... }
+<pre><code>callback: function(data, pagination) { ... }
 </code></pre>
 
     <table>
@@ -265,7 +261,7 @@
 <pre><code>alias: {
     pageNumber: 'pageNum',
     pageSize: 'limit'
-    }
+}
 </code></pre>
 
     <p>When the Ajax request sent, will replace the defaults <code>pageaNumber</code> and <code>pageSize</code>.</p>
@@ -304,9 +300,9 @@
     <p>Determines whether to display the first page number buttons when the ellipsis was displayed.</p>
 
 <pre><code>showBeginingOnOmit: false,
-    pageRange: 1,
-    totalNumber: 100,
-    pageSize: 10
+pageRange: 1,
+totalNumber: 100,
+pageSize: 10
 </code></pre>
 
     <p>The above settings, pagination bar will be displayed as like this "... 4 <code>5</code> 6 ... 10".</p>
@@ -316,9 +312,9 @@
     <p>Determines whether to display the last page number when the ellipsis was displayed.</p>
 
 <pre><code>showEndingOnOmit: false,
-    pageRange: 1,
-    totalNumber: 100,
-    pageSize: 10
+pageRange: 1,
+totalNumber: 100,
+pageSize: 10
 </code></pre>
 
     <p>The above settings, for example, pagination bar will be displayed as like this "1 ... 4 <code>5</code> 6 ...".</p>
@@ -474,7 +470,7 @@
 
     <p>Provide a custom function, for rendering the error message.</p>
 
-<pre><code>formatAjaxError: function(jqXHR, textStatus, errorThrown){ ... }
+<pre><code>formatAjaxError: function(jqXHR, textStatus, errorThrown) { ... }
 </code></pre>
 
     <h3>ajax <em>object</em></h3>
@@ -535,7 +531,7 @@
     <p>There are anthor usage, load the content of the second page by default, for example:</p>
 
 <pre><code>triggerPagingOnInit: true，
-    pageNum: 2
+pageNum: 2
 </code></pre>
 
     <h3>hideWhenLessThanOnePage <em>boolean (default <code>false</code>)</em></h3>
@@ -560,10 +556,9 @@
 
     <p>After Pagination is constructed, you can modify the behavior using the available public methods.</p>
 
-<pre><code>var container = $('#example1');
-    container.pagination({ ... });
-
-    container.pagination('previous');
+<pre><code>var container = $('#example');
+container.pagination({ ... });
+container.pagination('previous');
 </code></pre>
 
     <h3>previous</h3>
@@ -579,14 +574,14 @@
     <p>Go to the custom page. There is 2 ways:</p>
 
 <pre><code>container.pagination('go', 8)
-    container.pagination(8)
+container.pagination(8)
 </code></pre>
 
     <p>A custom callback function is also supported, for example:</p>
 
 <pre><code>container.pagination('go', 8, function(data, pagination){
     // template method of yourself
-    })
+})
 </code></pre>
 
     <p>Note, after set a custom function, will no longer call the default <code>callback</code> function.</p>
@@ -635,26 +630,26 @@
 
     <p>Using events as callbacks:</p>
 
-<pre><code>var container = $('#example1');
+<pre><code>var container = $('#example');
     container.pagination({
-    afterRender: function(){
-    // function body
+    afterRender: function() {
+        // function body
     }
-    });
+});
 </code></pre>
 
     <p>Using events as plugin hooks:</p>
 
-<pre><code>var container = $('#example2');
-
-    container.pagination({
+<pre><code>var container = $('#example');
+container.pagination({
     dataSource: [1, 2, 3],
     pageSize: 1
-    });
+});
 
-    container.addHook('afterRender', function(){
+// add some hooks
+container.addHook('afterRender', function() {
     // function body
-    });
+});
 </code></pre>
 
     <p>Note, the hook can be added before Pagination initialized, can also be added after Pagination initialized.</p>
@@ -788,14 +783,14 @@
 
 <pre><code>$.extend($.fn.pagination.defaults, {
     pageSize: 20
-    })
+})
 </code></pre>
 
     <p>After the change, all the new pagination instances's <code>pageSize</code> will be set to 20.</p>
 
     <hr />
 
-    <p><a href="https://github.com/superRaytin/paginationjs/issues">Help improve these docs. Open an issue or pull request.</a></p>
+    <p><a href="https://github.com/superRaytin/paginationjs-site/issues">Help improve these docs. Open an issue or pull request.</a></p>
 
 
 </div>

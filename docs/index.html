@@ -64,7 +64,7 @@
     <ol>
         <li><p><strong>Array</strong></p>
 
-            <p> Directly provide an array, such as:</p>
+            <p> Directly providing an array, such as:</p>
 
 <pre><code> ['1', '2', '3', '4']
 </code></pre></li>
@@ -571,17 +571,10 @@ container.pagination('previous');
 
     <h3>go</h3>
 
-    <p>Go to the custom page. There is 2 ways:</p>
+    <p>Go to a custom page. There are 2 ways:</p>
 
 <pre><code>container.pagination('go', 8)
 container.pagination(8)
-</code></pre>
-
-    <p>A custom callback function is also supported, for example:</p>
-
-<pre><code>container.pagination('go', 8, function(data, pagination){
-    // template method of yourself
-})
 </code></pre>
 
     <p>Note, after set a custom function, will no longer call the default <code>callback</code> function.</p>

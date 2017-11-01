@@ -157,7 +157,15 @@
 
     <h3>totalNumber <em>number (default <code>1</code>)</em></h3>
 
-    <p>条目总数，异步分页时必填，模拟分页时为数组的长度</p>
+    <p>提前指明条目总数，异步分页时可选填，模拟分页时为数组的长度</p>
+
+    <h3>totalNumberLocator <em>function(response)</em></h3>
+
+    <p>远程获取 <code>totalNumber</code> ，用于异步分页，只在 <code>dataSource</code> 为字符串时才可用</p>
+
+    <p>注意: 指定 <code>totalNumberLocator</code> 后将会忽略 <code>totalNumber</code></p>
+
+    <p>查看 <a href="/index.html#totalNumber_locator">demo</a></p>
 
     <h3>pageNumber <em>number (default <code>1</code>)</em></h3>
 
@@ -226,11 +234,6 @@
             <td>pageSize </td>
             <td> number </td>
             <td> 每页条目数</td>
-        </tr>
-        <tr>
-            <td>totalPage </td>
-            <td> number </td>
-            <td> 总页数</td>
         </tr>
         <tr>
             <td>totalNumber </td>

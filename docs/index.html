@@ -154,9 +154,17 @@
 
     <h3>totalNumber <em>number (default <code>1</code>)</em></h3>
 
-    <p>Total entries, This option must be specified when pagination is asynchronous.</p>
+    <p>Specify the total number of entries in advance (optional), it can be used when pagination is asynchronous.</p>
 
     <p>Note: This option only has effect in Pagination constructor and only if dataSource option is a URL.</p>
+
+    <h3>totalNumberLocator <em>function(response)</em></h3>
+
+    <p>Find <code>totalNumber</code> from remote response, only available when <code>dataSource</code> is a string.</p>
+
+    <p>Note: Specify <code>totalNumberLocator</code> will ignore the <code>totalNumber</code> option.</p>
+
+    <p>See <a href="/index.html#totalNumber_locator">demo</a></p>
 
     <h3>pageNumber <em>number (default <code>1</code>)</em></h3>
 
@@ -229,11 +237,6 @@
             <td> Entries of per page</td>
         </tr>
         <tr>
-            <td>totalPage </td>
-            <td> number </td>
-            <td> Total page</td>
-        </tr>
-        <tr>
             <td>totalNumber </td>
             <td> number </td>
             <td> Total entries</td>
@@ -264,7 +267,7 @@
 }
 </code></pre>
 
-    <p>When the Ajax request sent, will replace the defaults <code>pageaNumber</code> and <code>pageSize</code>.</p>
+    <p>When the Ajax request sent, will replace the defaults <code>pageNumber</code> and <code>pageSize</code>.</p>
 
 <pre><code>/test.json?pageNum=2&amp;limit=10
 </code></pre>

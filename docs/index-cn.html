@@ -446,9 +446,17 @@ pageSize: 10
     </ul>
 
 
-    <h3>pageLink <em>string</em></h3>
+    <h3>pageLink <em>string | function</em></h3>
 
     <p>分页的链接，默认为空</p>
+
+    <p>以函数的方式提供:</p>
+
+    <p>提供一个自定义函数，返回链接内容</p>
+
+    <pre><code>pageLink: function(pagination) {
+	return '/page_' + pagination.pageNumber + '.html';
+}</code></pre>
 
     <h2>Utilities</h2>
 

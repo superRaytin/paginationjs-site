@@ -124,7 +124,7 @@
 
     <p>This option is used to manually modify the location of that array in data source.</p>
 
-    <p>Used as a string:</p>
+    <p>Use as a string:</p>
 
     <p><code>locator: 'data'</code>:</p>
 
@@ -140,9 +140,9 @@
 }
 </code></pre>
 
-    <p>Using as a function:</p>
+    <p>Use as a function:</p>
 
-    <p>Provide a custom function, find the array position, and return.</p>
+    <p>Provide a custom function, find the array position, and return it.</p>
 
 <pre><code>locator: function() {
     // find data and return
@@ -455,9 +455,17 @@ pageSize: 10
     </ul>
 
 
-    <h3>pageLink <em>string</em></h3>
+    <h3>pageLink <em>string | function</em></h3>
 
     <p>Page link.</p>
+
+    <p>Use as a function:</p>
+
+    <p>Provide a custom function and return a link string.</p>
+
+    <pre><code>pageLink: function(pagination) {
+	return '/page_' + pagination.pageNumber + '.html';
+}</code></pre>
 
     <h2>Utilities</h2>
 
@@ -622,9 +630,9 @@ container.pagination(8)
 
     <h1><span id="events">Events</span></h1>
 
-    <p>Pagination events are the common interface that function in 2 ways: as callbacks and as plugin hooks.</p>
+    <p>There are two ways to use pagination events: with option or with plugin hook.</p>
 
-    <p>Using events as callbacks:</p>
+    <p>Use with option:</p>
 
 <pre><code>var container = $('#example');
     container.pagination({
@@ -634,7 +642,7 @@ container.pagination(8)
 });
 </code></pre>
 
-    <p>Using events as plugin hooks:</p>
+    <p>Use with plugin hook:</p>
 
 <pre><code>var container = $('#example');
 container.pagination({
@@ -648,7 +656,7 @@ container.addHook('afterRender', function() {
 });
 </code></pre>
 
-    <p>Note, the hook can be added before Pagination initialized, can also be added after Pagination initialized.</p>
+    <p>Note: the hook can be added before Pagination initialized, can also be added after Pagination initialized.</p>
 
     <h3>beforeInit <em>function</em></h3>
 
@@ -656,9 +664,9 @@ container.addHook('afterRender', function() {
 
     <h3>beforeRender <em>function</em></h3>
 
-    <p>Invoked before rendering pagination bar. Parameters:</p>
+    <p>Invoked before rendering pagination. Parameters:</p>
 
-    <p><code>isForced</code> is <code>true</code> if rendering was triggered by a paging; or <code>false</code> if rendering was triggered by Pagination initialization.</p>
+    <p><code>isForced</code> will be <code>true</code> when the render process triggered by paging behavior; or it will be <code>false</code> when triggered by Pagination initialization.</p>
 
     <h3>beforePaging <em>function</em></h3>
 
@@ -670,11 +678,11 @@ container.addHook('afterRender', function() {
 
     <h3>beforeDisable <em>function</em></h3>
 
-    <p>Invoked before disabling paging.</p>
+    <p>Invoked before disabling Pagination.</p>
 
     <h3>beforeEnable <em>function</em></h3>
 
-    <p>Invoked before enabling paging.</p>
+    <p>Invoked before enabling Pagination.</p>
 
     <h3>beforePreviousOnClick <em>function</em></h3>
 
@@ -690,7 +698,7 @@ container.addHook('afterRender', function() {
 
     <h3>beforeGoInputOnEnter <em>function</em></h3>
 
-    <p>Invoked before a Enter pressed on the 'Go' input.</p>
+    <p>Invoked before Enter key pressed on the 'Go' input.</p>
 
     <h3>beforeGoButtonOnClick <em>function</em></h3>
 
@@ -704,7 +712,7 @@ container.addHook('afterRender', function() {
 
     <p>Invoked after rendering pagination bar. Parameters:</p>
 
-    <p><code>isForced</code> is <code>true</code> if rendering was triggered by a paging; or <code>false</code> if rendering was triggered by Pagination initialization.</p>
+    <p><code>isForced</code> will be <code>true</code> when the render process triggered by paging behavior; or it will be <code>false</code> when triggered by Pagination initialization.</p>
 
     <h3>afterPaging <em>function</em></h3>
 
@@ -716,11 +724,11 @@ container.addHook('afterRender', function() {
 
     <h3>afterDisable <em>function</em></h3>
 
-    <p>Invoked after disabling paging.</p>
+    <p>Invoked after disabling Pagination.</p>
 
     <h3>afterEnable <em>function</em></h3>
 
-    <p>Invoked after enabling paging.</p>
+    <p>Invoked after enabling Pagination.</p>
 
     <h3>afterPreviousOnClick <em>function</em></h3>
 
@@ -736,7 +744,7 @@ container.addHook('afterRender', function() {
 
     <h3>afterGoInputOnEnter <em>function</em></h3>
 
-    <p>Invoked after a Enter pressed on the 'Go' input.</p>
+    <p>Invoked after Enter key pressed on the 'Go' input.</p>
 
     <h3>afterGoButtonOnClick <em>function</em></h3>
 
@@ -744,7 +752,7 @@ container.addHook('afterRender', function() {
 
     <h3>afterIsFirstPage <em>function</em></h3>
 
-    <p>Invoked when the selected page number is the first.</p>
+    <p>Invoked when the selected page number is 1.</p>
 
     <h3>afterIsLastPage <em>function</em></h3>
 

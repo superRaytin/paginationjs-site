@@ -6,7 +6,7 @@
     <title>Pagination.js | Docs</title>
     <link href="../css/base.css" rel="stylesheet">
     <link href="../css/prettify.css" rel="stylesheet">
-    <link href="../dist/2.0.7/pagination.css" rel="stylesheet">
+    <link href="../dist/2.1.1/pagination.css" rel="stylesheet">
     <link href="../css/style.css" rel="stylesheet">
 </head>
 
@@ -155,7 +155,7 @@
 
     <p>通过 Ajax 获取的数据同样会应用此规则</p>
 
-    <h3>totalNumber <em>number (default <code>1</code>)</em></h3>
+    <h3>totalNumber <em>number (default <code>0</code>)</em></h3>
 
     <p>提前指明条目总数，异步分页时可选填，模拟分页时为数组的长度</p>
 
@@ -371,7 +371,7 @@ pageSize: 10
 
     <p>跳转按钮文本，默认为 <code>Go</code></p>
 
-    <h3>formatNavigator <em>string | function</em></h3>
+    <h3>formatNavigator <em>string | function(currentPage, totalPage, totalNumber)</em></h3>
 
     <p>导航器格式化模板，默认为 <code>&lt;%= currentPage %&gt; / &lt;%= totalPage %&gt;</code>，也可提供一个自定义函数，返回一个这样的字符串</p>
 
@@ -386,7 +386,7 @@ pageSize: 10
 
     <p>See <a href="/index.html#format_navigator">demo</a></p>
 
-    <h3>formatGoInput <em>string | function</em></h3>
+    <h3>formatGoInput <em>string | function(input, currentPage, totalPage, totalNumber)</em></h3>
 
     <p>跳转输入框格式化模板，默认为 <code>&lt;%= input %&gt;</code>，也可提供一个自定义函数，返回一个这样的字符串</p>
 
@@ -404,7 +404,7 @@ pageSize: 10
 
     <p>See <a href="/index.html#format_go_input">demo</a></p>
 
-    <h3>formatGoButton <em>string | function</em></h3>
+    <h3>formatGoButton <em>string | function(button, currentPage, totalPage, totalNumber)</em></h3>
 
     <p>跳转按钮格式化模板，默认为 <code>&lt;%= button %&gt;</code>，也可提供一个自定义函数，返回一个这样的字符串</p>
 
@@ -420,7 +420,7 @@ pageSize: 10
     </ul>
 
 
-    <h3>header <em>string | function</em></h3>
+    <h3>header <em>string | function(currentPage, totalPage, totalNumber)</em></h3>
 
     <p>自定义头部内容，默认为空</p>
 
@@ -433,7 +433,7 @@ pageSize: 10
     </ul>
 
 
-    <h3>footer <em>string | function</em></h3>
+    <h3>footer <em>string | function(currentPage, totalPage, totalNumber)</em></h3>
 
     <p>自定义尾部内容，默认为空</p>
 

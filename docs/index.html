@@ -6,7 +6,7 @@
     <title>Pagination.js | Docs</title>
     <link href="../css/base.css" rel="stylesheet">
     <link href="../css/prettify.css" rel="stylesheet">
-    <link href="../dist/2.0.7/pagination.css" rel="stylesheet">
+    <link href="../dist/2.1.1/pagination.css" rel="stylesheet">
     <link href="../css/style.css" rel="stylesheet">
 </head>
 
@@ -57,20 +57,20 @@
 
     <h3>dataSource <em>array | string | object | function</em></h3>
 
-    <p>Data source, ultimately an array will be provided for Pagination.</p>
+    <p>Specify the data source of the pagination.</p>
 
-    <p>Data source supports 4 formats.</p>
+    <p> <code>dataSource</code> supports 4 formats.</p>
 
     <ol>
         <li><p><strong>Array</strong></p>
 
-            <p> Directly providing an array, such as:</p>
+            <p> Directly provide an array, such as:</p>
 
 <pre><code> ['1', '2', '3', '4']
 </code></pre></li>
         <li><p><strong>Object</strong></p>
 
-            <p> Provide an object, which will contain an array, and the array can be specified via <code>locator: 'data'</code>.</p>
+            <p> Provide an object contained an array, that array can be specified via <code>locator: 'data'</code>.</p>
 
 <pre>
 <code> {
@@ -79,7 +79,7 @@
 </code></pre></li>
         <li><p><strong>Function</strong></p>
 
-            <p> Provide a custom function, use <code>done</code> to return an array, can achieve above 2 ways.</p>
+            <p> Provide a custom function.</p>
 
 <pre><code> dataSource: function(done){
     var result = [];
@@ -90,7 +90,7 @@
  }
 </code></pre>
 
-            <p> You can also send a request to get data, use <code>done</code> to return asynchronous data.</p>
+            <p> You can also send a request to get data, invoke <code>done</code> to return the data source.</p>
 
 <pre><code> dataSource: function(done) {
     $.ajax({
@@ -104,14 +104,14 @@
 </code></pre></li>
         <li><p><strong>URL</strong></p>
 
-            <p> Provide a URL, returns data via Ajax, each request returns one page of data, the data returned can also be located by <code>locator</code>.</p>
+            <p>Indicate the data source via Ajax, each request returns one page of data, the data returned can be located by <code>locator</code>.</p>
 
-            <p> If URL is one type of File, HTTP or HTTPS protocol, will using <code>jsonp</code> to send requests, otherwise Ajax.</p>
+            <p>Pagination will using <code>jsonp</code> to send requests while <code>URL</code> is file, HTTP or HTTPS protocol, otherwise Ajax.</p>
 
 <pre><code> /test.json
 </code></pre>
 
-            <p> For each pagination request, two parameters <code>pageNumber</code> and <code>pageSize</code> will be added, you can also use <code>alias</code> to specify the parameter's name.</p>
+            <p> For each pagination request, these two parameters <code>pageNumber</code> <code>pageSize</code> will be appended to the request url. The parameter's name can be specified by <code>alias</code>.</p>
 
 <pre><code> /test.json?pageNumber=2&amp;pageSize=10
 </code></pre></li>
@@ -120,11 +120,11 @@
 
     <h3>locator <em>string | function (default <code>data</code>)</em></h3>
 
-    <p>In general, data source is an array, and it can be processed directly by Pagination. But if the return is an Object, then you need to specify that array.</p>
+    <p>In general, data source is an array, and it can be processed directly by Pagination. But if an Object is returned, then you need to specify that array.</p>
 
-    <p>This option is used to manually modify the location of that array in data source.</p>
+    <p>This option is used to manually modify the location of that array in the data source.</p>
 
-    <p>Used as a string:</p>
+    <p>Using as a string:</p>
 
     <p><code>locator: 'data'</code>:</p>
 
@@ -133,7 +133,7 @@
 }
 </code></pre>
 
-    <p>locator uses <a href="https://github.com/component/to-function">to-function</a>, so you may use dot notation to traverse the result array, such as <code>locator: 'a.b'</code>:</p>
+    <p>locator uses <a href="https://github.com/component/to-function">to-function</a>, so you can use dot notation to traverse the result array, such as <code>locator: 'a.b'</code>:</p>
 
 <pre><code>{
     a: {b: ['1', '2', '3', '4']}
@@ -142,7 +142,7 @@
 
     <p>Using as a function:</p>
 
-    <p>Provide a custom function, find the array position, and return.</p>
+    <p>Provide a custom function to find the position of that array.</p>
 
 <pre><code>locator: function() {
     // find data and return
@@ -150,11 +150,11 @@
 }
 </code></pre>
 
-    <p>Please note that the data via Ajax will apply the same rules.</p>
+    <p>Please note that the data got via Ajax will apply the same rules.</p>
 
-    <h3>totalNumber <em>number (default <code>1</code>)</em></h3>
+    <h3>totalNumber <em>number (default <code>0</code>)</em></h3>
 
-    <p>Specify the total number of entries in advance (optional), it can be used when pagination is asynchronous.</p>
+    <p>Specify the total number of entries in advance (optional), it can be used when pagination is in asynchronous mode.</p>
 
     <p>Note: This option only has effect in Pagination constructor and only if dataSource option is a URL.</p>
 
@@ -374,13 +374,13 @@ pageSize: 10
 
     <p>The text to display for the <code>Go</code> button. Default is <code>Go</code>.</p>
 
-    <h3>formatNavigator <em>string | function</em></h3>
+    <h3>formatNavigator <em>string | function(currentPage, totalPage, totalNumber)</em></h3>
 
-    <p>Format template for the navigator. Default is <code>&lt;%= currentPage %&gt; / &lt;%= totalPage %&gt;</code>.</p>
+    <p>Format the navigator from the template. Default is <code>&lt;%= currentPage %&gt; / &lt;%= totalPage %&gt;</code>.</p>
 
-    <p>String containing the template variables or a function that returns such a string.</p>
+    <p>A string contained template variables or a function that returns such a string.</p>
 
-    <p>Provide 3 template variables.</p>
+    <p>There are 3 template variables.</p>
 
     <ul>
         <li><code>currentPage</code></li>
@@ -391,15 +391,15 @@ pageSize: 10
 
     <p>See <a href="/index.html#format_navigator">demo</a></p>
 
-    <h3>formatGoInput <em>string | function</em></h3>
+    <h3>formatGoInput <em>string | function(input, currentPage, totalPage, totalNumber)</em></h3>
 
-    <p>Format template for the 'Go' input box. Default is <code>&lt;%= input %&gt;</code>.</p>
+    <p>Format the "Go" input from the template. Default is <code>&lt;%= input %&gt;</code>.</p>
 
-    <p>String containing the template variables or a function that returns such a string.</p>
+    <p>A string contained template variables or a function that returns such a string.</p>
 
-    <p><code>&lt;%= input %&gt;</code> is equivalent to a package of <code>&lt;input type= "text" class= "J-paginationjs-go-pagenumber" &gt;</code>, therefore, you can also customize an input box element, ensure that the element has the <code>J-paginationjs-go-pagenumber</code> class.</p>
+    <p><code>&lt;%= input %&gt;</code> is equivalent to <code>&lt;input type= "text" class= "J-paginationjs-go-pagenumber" &gt;</code>, therefore, you can also customize an input element yourself, just ensure that the element has a <code>J-paginationjs-go-pagenumber</code> class.</p>
 
-    <p>Provide 4 template variables.</p>
+    <p>There are 4 template variables.</p>
 
     <ul>
         <li><code>input</code></li>
@@ -411,15 +411,15 @@ pageSize: 10
 
     <p>See <a href="/index.html#format_go_input">demo</a></p>
 
-    <h3>formatGoButton <em>string | function</em></h3>
+    <h3>formatGoButton <em>string | function(button, currentPage, totalPage, totalNumber)</em></h3>
 
-    <p>Format template for the 'Go' button. Default is <code>&lt;%= button %&gt;</code>.</p>
+    <p>Format the "Go" button from the template. Default is <code>&lt;%= button %&gt;</code>.</p>
 
-    <p>String containing the template variables or a function that returns such a string.</p>
+    <p>A string contained template variables or a function that returns such a string.</p>
 
-    <p><code>&lt;%= button %&gt;</code> is equivalent to a package of <code>&lt;input type="button" class="J-paginationjs-go-button"&gt;</code>, therefore, you can also customize an button element, ensure that the element has the <code>J-paginationjs-go-button</code> class.</p>
+    <p><code>&lt;%= button %&gt;</code> is equivalent to <code>&lt;input type="button" class="J-paginationjs-go-button"&gt;</code>, therefore, you can also customize an button element yourself, just ensure that the element has a <code>J-paginationjs-go-button</code> class.</p>
 
-    <p>Provide 4 template variables.</p>
+    <p>There are 4 template variables.</p>
 
     <ul>
         <li><code>button</code></li>
@@ -429,24 +429,11 @@ pageSize: 10
     </ul>
 
 
-    <h3>header <em>string | function</em></h3>
+    <h3>header <em>string | function(currentPage, totalPage, totalNumber)</em></h3>
 
-    <p>Custom header content. <code>header</code> may be a string or a function.</p>
+    <p>Customize the header content. <code>header</code> may be a string or a function.</p>
 
-    <p>Provide 3 template variables.</p>
-
-    <ul>
-        <li><code>currentPage</code></li>
-        <li><code>totalPage</code></li>
-        <li><code>totalNumber</code></li>
-    </ul>
-
-
-    <h3>footer <em>string | function</em></h3>
-
-    <p>Custom footer content. <code>footer</code> may be a string or a function.</p>
-
-    <p>Provide 3 template variables.</p>
+    <p>There are 3 template variables.</p>
 
     <ul>
         <li><code>currentPage</code></li>
@@ -455,30 +442,38 @@ pageSize: 10
     </ul>
 
 
-    <h3>pageLink <em>string</em></h3>
+    <h3>footer <em>string | function(currentPage, totalPage, totalNumber)</em></h3>
 
-    <p>Page link.</p>
+    <p>Customize the footer content. <code>footer</code> may be a string or a function.</p>
+
+    <p>There are 3 template variables.</p>
+
+    <ul>
+        <li><code>currentPage</code></li>
+        <li><code>totalPage</code></li>
+        <li><code>totalNumber</code></li>
+    </ul>
 
     <h2>Utilities</h2>
 
     <h3>formatResult <em>function(data)</em></h3>
 
-    <p>Provide a custom function, processing result data before the <code>callback</code> function called.</p>
+    <p>Used to process result data before <code>callback</code> invoked.</p>
 
-    <p>Return an processed array, or process the passed <code>data</code> array directly.</p>
+    <p>You should return an array processed by this function, you can also process <code>data</code> directly.</p>
 
     <p>See <a href="/index.html#formatResult">demo</a></p>
 
     <h3>formatAjaxError <em>function(jqXHR, textStatus, errorThrown)</em></h3>
 
-    <p>Provide a custom function, for rendering the error message.</p>
+    <p>A function for rendering the error message.</p>
 
 <pre><code>formatAjaxError: function(jqXHR, textStatus, errorThrown) { ... }
 </code></pre>
 
     <h3>ajax <em>object</em></h3>
 
-    <p>Customized configuration for the built-in Ajax function. Must be parameter-compatible with <code>$.ajax</code>. Usuful for the asynchronous pagination.</p>
+    <p>Used to customize configuration for the built-in Ajax function. it must be parameter-compatible with <code>$.ajax</code>. Usuful for the asynchronous pagination.</p>
 
     <table>
         <thead>
@@ -529,13 +524,7 @@ pageSize: 10
 
     <p>Determines whether to trigger default pagination at initialization.</p>
 
-    <p>in some cases, you may load the content of the first page with AJAX and the content already showed before you initialize the pagination, you should set this option to <code>false</code>.</p>
-
-    <p>There are anthor usage, load the content of the second page by default, for example:</p>
-
-<pre><code>triggerPagingOnInit: true，
-pageNum: 2
-</code></pre>
+    <p>you may want to load the first page with AJAX, while the content has already been loaded before the pagination initialized. In this situation, you should set this option to <code>false</code>.</p>
 
     <h3>hideWhenLessThanOnePage <em>boolean (default <code>false</code>)</em></h3>
 

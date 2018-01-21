@@ -281,7 +281,7 @@ $(function() {
       });
 
       !options.callback && (options.callback = function(data, pagination) {
-        if (window.console) console.log(data, pagination);
+        if (window.console) console.log(id, desc, data, pagination);
 
         dataContainer.html(self.template(data));
       });

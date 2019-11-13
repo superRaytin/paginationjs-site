@@ -6,7 +6,7 @@
     <title>Pagination.js | Docs</title>
     <link href="../css/base.css" rel="stylesheet">
     <link href="../css/prettify.css" rel="stylesheet">
-    <link href="../dist/2.1.4/pagination.css" rel="stylesheet">
+    <link href="../dist/2.1.5/pagination.css" rel="stylesheet">
     <link href="../css/style.css" rel="stylesheet">
 </head>
 
@@ -174,9 +174,11 @@
 
     <p>Entries of per page.</p>
 
-    <h3>pageRange <em>number (default <code>2</code>)</em></h3>
+    <h3>pageRange <em>number | null (default <code>2</code>)</em></h3>
 
     <p>Range of visible page number, this means that the amount on both sides of the selected page. For example, if the selected page number is <code>6</code>, and pageRange is set to 2, then the pagination bar will be displayed as like this '1 ... 4 5<code>6</code>7 8'.</p>
+
+    <p>Tip: you can show all the pages by specifying <code>pageRange: null</code></p>
 
     <h3>callback <em>function(data, pagination)</em></h3>
 

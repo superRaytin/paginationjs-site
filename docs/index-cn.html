@@ -6,7 +6,7 @@
     <title>Pagination.js | Docs</title>
     <link href="../css/base.css" rel="stylesheet">
     <link href="../css/prettify.css" rel="stylesheet">
-    <link href="../dist/2.1.4/pagination.css" rel="stylesheet">
+    <link href="../dist/2.1.5/pagination.css" rel="stylesheet">
     <link href="../css/style.css" rel="stylesheet">
 </head>
 
@@ -175,9 +175,11 @@
 
     <p>每页的条目数</p>
 
-    <h3>pageRange <em>number (default <code>2</code>)</em></h3>
+    <h3>pageRange <em>number | null (default <code>2</code>)</em></h3>
 
     <p>可见的页码范围，即当前页码两边的页码数量。比如当前是第 6 页，设置 pageRange 为 2，则页码条显示为 '1... 4 5 <code>6</code> 7 8'</p>
+
+    <p>小提示：如果想要显示全部的页码，可以通过设置 <code>pageRange: null</code> 来禁用 pageRange</p>
 
     <h3>callback <em>function(data, pagination)</em></h3>
 

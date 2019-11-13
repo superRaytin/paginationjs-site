@@ -80,6 +80,18 @@ $(function() {
       }
     },
     {
+      id: 14,
+      desc: 'Show all pages',
+      anchor: 'show_all_pages',
+      options: {
+        dataSource: generateData(50),
+        pageSize: 5,
+        pageRange: null,
+        className: 'paginationjs-big',
+        showPageNumbers: true
+      }
+    },
+    {
       id: 3,
       desc: 'Asynchronous or JSONP',
       anchor: 'datasource_jsonp',

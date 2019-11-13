@@ -383,6 +383,28 @@
     </div>
 </script>
 
+<script type="text/template" id="template-demo14">
+    <div class="demo-section clearfix">
+        <div class="demo-section-title"></div>
+        <div class="inner-left preview">
+            <div class="data-container"></div>
+        </div>
+        <div class="inner-right code">
+<pre><code>$('#demo').pagination({
+    dataSource: [1, 2, 3, 4, 5, 6, 7, ... , 50],
+    pageSize: 5,
+    pageRange: null,
+    showPageNumbers: true,
+    callback: function(data, pagination) {
+        // template method of yourself
+        var html = template(data);
+        dataContainer.html(html);
+    }
+})</code></pre>
+        </div>
+    </div>
+</script>
+
 <script type="text/template" id="template-demo">
     <div class="demo-section clearfix">
         <div class="demo-section-title"></div>

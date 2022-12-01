@@ -80,7 +80,7 @@ $(function() {
             });
 
             gotoTop.on('click', function() {
-                $('body').get(0).scrollTop = 0;
+                window.scrollTo(0, 0);
             });
 
             self.scrollHandler();

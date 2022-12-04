@@ -46,11 +46,11 @@ ol.linenums {
 }
 .inner-left {
   float: left;
-  width: 48%;
+  width: 51%;
 }
 .inner-right {
   float: right;
-  width: 48%;
+  width: 46%;
 }
 .topbar {
   background: #222;

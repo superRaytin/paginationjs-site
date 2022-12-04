@@ -180,7 +180,7 @@ $(function() {
             h1.each(function() {
                 var current = $(this);
 
-                if (current.text() === 'Skin') {
+                if (current.text() === 'Theme') {
                     current.next().after(skindemo);
                     skindemo.removeAttr('style');
                 }

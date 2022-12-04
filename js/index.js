@@ -44,6 +44,18 @@ $(function() {
       }
     },
     {
+      id: 20,
+      desc: 'Show page size changer',
+      anchor: 'show_page_size_changer',
+      disableContainerMaxHeight: true,
+      options: {
+        dataSource: generateData(195),
+        pageSize: 5,
+        className: 'paginationjs-big',
+        showSizeChanger: true
+      }
+    },
+    {
       id: 8,
       desc: 'Show "go" input & button',
       anchor: 'show_go_button',
@@ -194,7 +206,7 @@ $(function() {
         pageSize: 5,
         position: 'top',
         showNavigator: true,
-        formatNavigator: '<span style="color: #f00"><%= currentPage %><\/span> st/rd/th, <%= totalPage %> pages, <%= totalNumber %> entries',
+        formatNavigator: '<%= rangeStart %>-<%= rangeEnd %> of <%= totalNumber %> items',
         className: 'paginationjs-big'
       }
     },
@@ -229,6 +241,7 @@ $(function() {
     'beforeInit',
     'beforeRender',
     'beforePaging',
+    'beforeSizeSelectorChange',
     'beforeDestroy',
     'beforeDisable',
     'beforeEnable',
@@ -240,6 +253,7 @@ $(function() {
     'afterInit',
     'afterRender',
     'afterPaging',
+    'afterSizeSelectorChange',
     'afterDestroy',
     'afterDisable',
     'afterEnable',
@@ -262,6 +276,7 @@ $(function() {
       var desc = config.desc;
       var anchor = config.anchor;
       var options = config.options;
+      var disableContainerMaxHeight = config.disableContainerMaxHeight;
 
       if (!id) {
         id = Math.floor(Math.random() * 1000);
@@ -287,10 +302,12 @@ $(function() {
       var paginationWrapper = $('.preview', section);
       var dataContainer = $('.data-container', paginationWrapper);
 
-      dataContainer.css({
-        'min-height': Math.min(options.pageSize * 35, 175),
-        'max-height': Math.min(options.pageSize * 35, 285)
-      });
+      if (!disableContainerMaxHeight) {
+        dataContainer.css({
+          'min-height': Math.min(options.pageSize * 35, 175),
+          'max-height': Math.min(options.pageSize * 35, 285)
+        });
+      }
 
       !options.callback && (options.callback = function(data, pagination) {
         if (window.console) console.log(id, desc, data, pagination);

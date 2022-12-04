@@ -6,7 +6,7 @@
     <title>Pagination.js | Docs</title>
     <link href="../css/base.css" rel="stylesheet">
     <link href="../css/prettify.css" rel="stylesheet">
-    <link href="../dist/2.3.1/pagination.css" rel="stylesheet">
+    <link href="../dist/2.4.0/pagination.css" rel="stylesheet">
     <link href="../css/style.css" rel="stylesheet">
 </head>
 
@@ -244,6 +244,10 @@
     <p>是否显示 &#39;下一页&#39;</p>
     <h3 id="toc_14">showPageNumbers <em>boolean (default <code>true</code>)</em></h3>
     <p>是否显示 &#39;页码&#39;</p>
+    <h3 id="toc_141">showSizeChanger <em>boolean (default <code>false</code>)</em></h3>
+    <p>是否显示 pageSize 选择器</p>
+    <h3 id="toc_142">sizeChangerOptions <em>boolean (default <code>[10, 20, 50, 100]</code>)</em></h3>
+    <p>指定 pageSize 的选项范围，默认是 <code>[10, 20, 50, 100]</code>。</p>
     <h3 id="toc_15">showNavigator <em>boolean (default <code>false</code>)</em></h3>
     <p>是否显示导航器</p>
     <h3 id="toc_16">showGoInput <em>boolean (default <code>false</code>)</em></h3>
@@ -301,13 +305,21 @@ pageSize: 10</code></pre>
     <h3 id="toc_35">goButtonText <em>string</em></h3>
     <p>跳转按钮文本，默认为 <code>Go</code></p>
     <h3 id="toc_36">formatNavigator <em>string | function(currentPage, totalPage, totalNumber)</em></h3>
-    <p>导航器格式化模板，默认为 <code>&lt;%= currentPage %&gt; / &lt;%= totalPage %&gt;</code>，也可提供一个自定义函数，返回一个这样的字符串</p>
-    <p>提供 3 个模板变量</p>
+    <p>导航器格式化模板，默认为 <code>Total &lt;%= totalNumber %&gt; items</code>，也可提供一个自定义函数，返回一个这样的字符串</p>
+    <p>提供 5 个模板变量</p>
     <ul>
        <li><code>currentPage</code> 当前页码</li>
        <li><code>totalPage</code> 总页数</li>
        <li><code>totalNumber</code> 总条目数</li>
+       <li><code>rangeStart</code> 当前页的开始数</li>
+       <li><code>rangeEnd</code> 当前页的结束数</li>
     </ul>
+    <p>举个例子，总共 195 条数据，每页 20 条：</p>
+    <ul>
+        <li><code>&lt;%= rangeStart %&gt;-&lt;%= rangeEnd %&gt; of &lt;%= totalNumber %&gt; items</code> => <code>1-20 of 195 items</code></li>
+        <li><code>Total &lt;%= totalNumber %&gt; items</code> => <code>Total 195 items</code></li>
+        <li><code>&lt;%= currentPage %&gt; / &lt;%= totalPage %&gt;</code> => <code>1 / 10</code></li>
+     </ul>
     <p>查看 <a href="/index.html#format_navigator">demo</a></p>
     <h3 id="toc_37">formatGoInput <em>string | function(input, currentPage, totalPage, totalNumber)</em></h3>
     <p>跳转输入框格式化模板，默认为 <code>&lt;%= input %&gt;</code>，也可提供一个自定义函数，返回一个这样的字符串</p>
@@ -399,9 +411,16 @@ pageSize: 10</code></pre>
              <td>function</td>
              <td>发起请求之前的回调函数，可用于发送前修改 jqXHR 对象。beforeSend 函数返回 <code>false</code> 将取消该请求。</td>
           </tr>
+          <tr>
+             <td>pageNumberStartWithZero</td>
+             <td>boolean</td>
+             <td>默认情况下，分页请求发送的 <code>pageNumber</code>（或者其他的别名）会从 1 开始，如果你的服务端是从 0 开始处理分页的，那么只需要设置 <code>pageNumberStartWithZero: true</code>。</td>
+          </tr>
        </tbody>
     </table>
     <p>参数的更多信息，请参阅 <a href="http://api.jquery.com/jquery.ajax/">JQuery API Documentation</a></p>
+    <h3 id="toc_451">ajaxFunction <em>function(settings)</em></h3>
+    <p>用于自定义分页的 ajax 函数，会替换默认的 <code>$.ajax</code>，此函数接收的参数和 <code>$.ajax</code> 相同，函数内部必须调用 <code>settings.success(response)</code> 或 <code>settings.error(jqXHR, textStatus, errorThrown)</code>，错误函数的参数将传递给 <code>formatAjaxError</code> 函数（如果提供了）。这些参数与内置的 Ajax 函数提供的参数保持一致。</p>
     <h3 id="toc_46">triggerPagingOnInit <em>boolean (default <code>true</code>)</em></h3>
     <p>是否在初始化时触发默认分页，有些情况下，你可能希望默认触发首次分页，因为你已经用AJAX加载了内容并且内容已显示</p>
     <p>也有其他的用法，例如：默认加载第二页的数据</p>
@@ -492,6 +511,8 @@ container.addHook(&#39;afterRender&#39;, function(){
     <p>如果渲染是在分页时触发，则 <code>isForce</code> 为 <code>true</code>，如果是在初始化时触发，则为 <code>false</code>。</p>
     <h3 id="toc_65">beforePaging <em>function</em></h3>
     <p>分页之前调用</p>
+    <h3 id="toc_651">beforeSizeSelectorChange <em>function</em></h3>
+    <p>pageSize 改变之前调用</p>
     <h3 id="toc_66">beforeDestroy <em>function</em></h3>
     <p>分页实例销毁之前调用</p>
     <h3 id="toc_67">beforeDisable <em>function</em></h3>
@@ -514,6 +535,8 @@ container.addHook(&#39;afterRender&#39;, function(){
     <p>每次分页时会重新渲染分页条，渲染之后调用</p>
     <h3 id="toc_76">afterPaging <em>function</em></h3>
     <p>分页之后调用</p>
+    <h3 id="toc_761">afterSizeSelectorChange <em>function</em></h3>
+    <p>pageSize 改变之后调用</p>
     <h3 id="toc_77">afterDestroy <em>function</em></h3>
     <p>分页实例销毁之后调用</p>
     <h3 id="toc_78">afterDisable <em>function</em></h3>
@@ -540,7 +563,7 @@ container.addHook(&#39;afterRender&#39;, function(){
     <div>
        <pre><code class="language-none">&lt;link rel=&quot;stylesheet&quot; href=&quot;{yourAssetsServer}/pagination.css&quot; /&gt;</code></pre>
     </div>
-    <p>css &amp; less 文件: <a href="../dist/2.3.1/pagination.css">pagination.css</a> <a href="../dist/2.3.1/pagination.less">pagination.less</a></p>
+    <p>css &amp; less 文件: <a href="../dist/2.4.0/pagination.css">pagination.css</a> <a href="../dist/2.4.0/pagination.less">pagination.less</a></p>
     <p>例如蓝色皮肤，可以这样使用：</p>
     <div>
        <pre><code class="language-none">className: &#39;paginationjs-theme-blue&#39;</code></pre>

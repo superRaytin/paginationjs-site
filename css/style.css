@@ -280,8 +280,6 @@ ol.linenums {
   list-style: none;
 }
 .data-container {
-  min-height: 200px;
-  max-height: 400px;
   overflow: auto;
   margin: 15px 0;
 }

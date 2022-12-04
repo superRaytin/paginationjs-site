@@ -6,7 +6,7 @@
     <title>Pagination.js | Docs</title>
     <link href="../css/base.css" rel="stylesheet">
     <link href="../css/prettify.css" rel="stylesheet">
-    <link href="../dist/2.3.1/pagination.css" rel="stylesheet">
+    <link href="../dist/2.4.0/pagination.css" rel="stylesheet">
     <link href="../css/style.css" rel="stylesheet">
 </head>
 
@@ -245,6 +245,10 @@
     <p>Display the <code>next</code> button.</p>
     <h3 id="toc_14">showPageNumbers <em>boolean (default <code>true</code>)</em></h3>
     <p>Display page number buttons.</p>
+    <h3 id="toc_141">showSizeChanger <em>boolean (default <code>false</code>)</em></h3>
+    <p>Display size changer.</p>
+    <h3 id="toc_142">sizeChangerOptions <em>boolean (default <code>[10, 20, 50, 100]</code>)</em></h3>
+    <p>Specifies options for the size selector. Default is <code>[10, 20, 50, 100]</code>.</p>
     <h3 id="toc_15">showNavigator <em>boolean (default <code>false</code>)</em></h3>
     <p>Display the navigator.</p>
     <h3 id="toc_16">showGoInput <em>boolean (default <code>false</code>)</em></h3>
@@ -302,13 +306,21 @@ pageSize: 10</code></pre>
     <h3 id="toc_35">goButtonText <em>string</em></h3>
     <p>Custom label for the <code>Go</code> button. Default is <code>Go</code>.</p>
     <h3 id="toc_36">formatNavigator <em>string | function(currentPage, totalPage, totalNumber)</em></h3>
-    <p>Formats the navigator according to the specified variables. Accepts a <code>string</code> or a <code>function</code> that return those strings. Default is <code>&lt;%= currentPage %&gt; / &lt;%= totalPage %&gt;</code>.</p>
+    <p>Formats the navigator according to the specified variables. Accepts a <code>string</code> or a <code>function</code> that return those strings. Default is <code>Total &lt;%= totalNumber %&gt; items</code>.</p>
     <p>The following are the available template variables:</p>
     <ul>
        <li><code>currentPage</code> Current page number.</li>
        <li><code>totalPage</code> Total pages.</li>
        <li><code>totalNumber</code> Total number of data items.</li>
+       <li><code>rangeStart</code> Range start of current page.</li>
+       <li><code>rangeEnd</code> Range end of current page.</li>
     </ul>
+    <p>For example, total 195 data items and 20 items per page:</p>
+    <ul>
+        <li><code>&lt;%= rangeStart %&gt;-&lt;%= rangeEnd %&gt; of &lt;%= totalNumber %&gt; items</code> => <code>1-20 of 195 items</code></li>
+        <li><code>Total &lt;%= totalNumber %&gt; items</code> => <code>Total 195 items</code></li>
+        <li><code>&lt;%= currentPage %&gt; / &lt;%= totalPage %&gt;</code> => <code>1 / 10</code></li>
+     </ul>
     <p>See <a href="/index.html#format_navigator">demo</a></p>
     <h3 id="toc_37">formatGoInput <em>string | function(input, currentPage, totalPage, totalNumber)</em></h3>
     <p>Formats the <code>Go</code> input according to the specified variables. Accepts a <code>string</code> or a <code>function</code> that return those strings. Default is <code>&lt;%= input %&gt;</code>.</p>
@@ -399,9 +411,16 @@ pageSize: 10</code></pre>
              <td>function</td>
              <td>A pre-request callback function that can be used to modify the jqXHR object before it is sent. Returning false in the beforeSend function will cancel the request.</td>
           </tr>
+          <tr>
+             <td>pageNumberStartWithZero</td>
+             <td>boolean</td>
+             <td>By default, the passed <code>pageNumber</code>(or a alias if specified) will be <code>1</code>. If your backend indexes pages starting with zero rather than 1, just set <code>pageNumberStartWithZero: true</code>.</td>
+          </tr>
        </tbody>
     </table>
     <p>For more info on the parameters, refer to the <a href="https://api.jquery.com/jquery.ajax/">JQuery API Documentation</a>.</p>
+    <h3 id="toc_451">ajaxFunction <em>function(settings)</em></h3>
+    <p>A function to use as a replacement for <code>$.ajax()</code>. This function will be called with a single object parameter containing the same parameters as $.ajax(). Use this to implement a custom ajax function for pagination. The provided function must call either <code>settings.success(response)</code> where <code>response</code> is the returned data array or <code>settings.error(jqXHR, textStatus, errorThrown)</code>. The parameters for the error function are passed to the <code>formatAjaxError</code> function if one is provided. These are the same parameters provided by the built-in Ajax function.</p>
     <h3 id="toc_45">triggerPagingOnInit <em>boolean (default <code>true</code>)</em></h3>
     <p>Determines whether to trigger the default pagination at initialization.</p>
     <p>If you have already set innerHTML for the first page before Pagination initialization, you can set this option to <code>false</code> to prevent unnecessary paging once.</p>
@@ -486,6 +505,8 @@ container.addHook(&#39;afterRender&#39;, function(){
     <p><code>isForced</code> is <code>true</code> if the rendering is triggered on paging and <code>false</code> if it is triggered at initialization.</p>
     <h3 id="toc_64">beforePaging <em>function</em></h3>
     <p>Fired before paging.</p>
+    <h3 id="toc_641">beforeSizeSelectorChange <em>function</em></h3>
+    <p>Fired before the size selector changed.</p>
     <h3 id="toc_65">beforeDestroy <em>function</em></h3>
     <p>Fired before pagination destroyed.</p>
     <h3 id="toc_66">beforeDisable <em>function</em></h3>
@@ -509,6 +530,8 @@ container.addHook(&#39;afterRender&#39;, function(){
     <p><code>isForced</code> is <code>true</code> if the rendering is triggered on paging and <code>false</code> if it is triggered at initialization.</p>
     <h3 id="toc_75">afterPaging <em>function</em></h3>
     <p>Fired after paging.</p>
+    <h3 id="toc_761">afterSizeSelectorChange <em>function</em></h3>
+    <p>Fired after the size selector changed.</p>
     <h3 id="toc_76">afterDestroy <em>function</em></h3>
     <p>Fired after pagination destroyed.</p>
     <h3 id="toc_77">afterDisable <em>function</em></h3>
@@ -535,7 +558,7 @@ container.addHook(&#39;afterRender&#39;, function(){
     <div>
        <pre><code class="language-none">&lt;link rel=&quot;stylesheet&quot; href=&quot;{yourAssetsServer}/pagination.css&quot; /&gt;</code></pre>
     </div>
-    <p>css &amp; less file: <a href="../dist/2.3.1/pagination.css">pagination.css</a> <a href="../dist/2.3.1/pagination.less">pagination.less</a></p>
+    <p>css &amp; less file: <a href="../dist/2.4.0/pagination.css">pagination.css</a> <a href="../dist/2.4.0/pagination.less">pagination.less</a></p>
     <p>For example, the blue skin:</p>
     <div>
        <pre><code class="language-none">className: &#39;paginationjs-theme-blue&#39;</code></pre>

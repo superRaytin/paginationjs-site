@@ -450,7 +450,7 @@ $(function() {
         if (type === 'get') {
           result = container.pagination(action);
 
-          if (action === 'getSelectedPageData') {
+          if (action === 'getCurrentPageData') {
             try {
               result = JSON.stringify(result);
             }

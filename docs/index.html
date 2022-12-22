@@ -138,9 +138,9 @@
     </div>
     <p>The data got via Ajax also follow this rule.</p>
     <h3 id="toc_4">totalNumber <em>number (default <code>0</code>)</em></h3>
-    <p>When the dataSource is a URL, you should pass a <code>totalNumber</code> to specify the total number of data items (or via <code>totalNumberLocator</code>). OtherWise, it will not take effect as total number will be calculated automatically.</p>
+    <p>When the dataSource is an URL, you should pass a <code>totalNumber</code> to specify the total number of data items (or via <code>totalNumberLocator</code>). OtherWise, it will not take effect as total number will be calculated automatically.</p>
     <h3 id="toc_5">totalNumberLocator <em>function(response)</em></h3>
-    <p>Useful when the dataSource is a URL, and you expect specifies one of the field value in the request&#39;s response as the <code>totalNumber</code>.</p>
+    <p>Useful when the dataSource is an URL, and you expect specifies one of the field value in the request&#39;s response as the <code>totalNumber</code>.</p>
     <p>Note: Pagination will ignore <code>totalNumber</code> option when <code>totalNumberLocator</code> specified.</p>
     <p>See <a href="/index.html#totalNumber_locator">demo</a></p>
     <h3 id="toc_6">pageNumber <em>number (default <code>1</code>)</em></h3>
@@ -223,6 +223,11 @@
              <td>number</td>
              <td>Pagination direction, <code>-1</code> means forward, <code>1</code> means backward, <code>0</code> means current is at initialization.</td>
           </tr>
+          <tr>
+            <td>originalResponse</td>
+            <td>object</td>
+            <td>Original response of the request sent by <code>$.ajax()</code> when the <code>dataSource</code> is an URL.</td>
+         </tr>
        </tbody>
     </table>
     <h3 id="toc_10">alias <em>object</em></h3>
@@ -366,7 +371,7 @@ pageSize: 10</code></pre>
     <p>In this function, you should return a result array, alse you can process the original <code>data</code> directly.</p>
     <p>See <a href="/index.html#formatResult">demo</a></p>
     <h3 id="toc_43">formatAjaxError <em>function(jqXHR, textStatus, errorThrown)</em></h3>
-    <p>A function to be called if the dataSource is a URL and request fails.</p>
+    <p>A function to be called if the dataSource is an URL and request fails.</p>
     <div>
        <pre><code class="language-none">formatAjaxError: function(jqXHR, textStatus, errorThrown){ ... }</code></pre>
     </div>
@@ -426,7 +431,7 @@ pageSize: 10</code></pre>
     <p>Determines whether to trigger the default pagination at initialization.</p>
     <p>If you have already set innerHTML for the first page before Pagination initialization, you can set this option to <code>false</code> to prevent unnecessary paging once.</p>
     <h3 id="toc_46">resetPageNumberOnInit <em>boolean (default <code>true</code>)</em></h3>
-    <p>Reset page number to <code>1</code> when Pagination initialized/reinitialized and dataSource is a URL.</p>
+    <p>Reset page number to <code>1</code> when Pagination initialized/reinitialized and dataSource is an URL.</p>
     <h3 id="toc_47">hideOnlyOnePage <em>boolean (default <code>false</code>)</em></h3>
     <p>Determines whether to hide pagination when there is only one page.</p>
     <h1 id="toc_48">Methods</h1>
@@ -456,7 +461,7 @@ container.pagination(8)</code></pre>
     <p>Follow the code above, Pagination will use your callback function instead of the default <code>callback</code> function on this paging.</p>
     <h3 id="toc_52">disable</h3>
     <p>To disable the pagination.</p>
-    <p>Note: If the dataSource is a URL, Pagination will be automatically set to disabled before sending the request, and <code>enable</code> will be automatically invoked after the request completes.</p>
+    <p>Note: If the dataSource is an URL, Pagination will be automatically set to disabled before sending the request, and <code>enable</code> will be automatically invoked after the request completes.</p>
     <h3 id="toc_53">enable</h3>
     <p>To enable the pagination.</p>
     <h3 id="toc_54">show</h3>

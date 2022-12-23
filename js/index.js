@@ -377,17 +377,18 @@ $(function() {
 
         var argstr = '&nbsp;Args: ';
         for (var j = 0, len = data.length; j < data.length; j++) {
+          var dataItem = data[j];
           try{
-            argstr += JSON.stringify(data[j]);
+            if (typeof dataItem === 'object' && dataItem.constructor && dataItem.constructor === jQuery.Event) {
+              argstr += '[jQuery Event Object]';
+            } else {
+              argstr += JSON.stringify(dataItem);
+            }
           } catch(e) {
-            argstr += data[j].toString();
+            argstr += dataItem.toString();
           }
 
           if (typeof argstr === 'undefined') continue;
-
-          if (argstr.length > 32) {
-            argstr += Object.prototype.toString.call(data[j]);
-          }
 
           if (j < len - 1) {
             argstr += ',';

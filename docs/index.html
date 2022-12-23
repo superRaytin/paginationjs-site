@@ -101,7 +101,8 @@
        </li>
        <li>
           <p><strong>URL</strong></p>
-          <p>Query data items for each paging from a remote server via Ajax, usually you will use it with a <code>locator</code>.</p>
+          <p>Query data items for each paging from a remote server via Ajax.</p>
+          <p>Usually you will use it with a <code>locator</code> to specify the location of the array containing data items within the response. The full response of the Ajax request is available as the <code>originalResponse</code> property of the <code>pagination</code> object passed to <code>callback</code>.</p>
           <p>Pagination will sending requests via <code>JSONP</code> while <code>URL</code> is one of File / HTTP / HTTPS protocol type, otherwise normal Ajax.</p>
           <div>
              <pre><code class="language-none">/test.json</code></pre>

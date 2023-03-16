@@ -6,7 +6,7 @@
     <title>Pagination.js | Docs</title>
     <link href="../css/base.css" rel="stylesheet">
     <link href="../css/prettify.css" rel="stylesheet">
-    <link href="../dist/2.5.1/pagination.css" rel="stylesheet">
+    <link href="../dist/2.6.0/pagination.css" rel="stylesheet">
     <link href="../css/style.css" rel="stylesheet">
 </head>
 
@@ -434,6 +434,22 @@ pageSize: 10</code></pre>
     <p>Reset page number to <code>1</code> when Pagination initialized/reinitialized and dataSource is an URL.</p>
     <h3 id="toc_47">hideOnlyOnePage <em>boolean (default <code>false</code>)</em></h3>
     <p>Determines whether to hide pagination when there is only one page.</p>
+    <h3 id="toc_471">onError <em>function(errorThrown, errorType)</em></h3>
+    <p>A function to be called if error thrown when rendering pagination. The function gets passed two arguments: The error object and the error type.</p>
+   <table>
+      <thead>
+         <tr>
+            <th>ErrorType</th>
+            <th>Description</th>
+         </tr>
+      </thead>
+      <tbody>
+         <tr>
+            <td>ajaxSuccessHandlerError</td>
+            <td>error occurred while executing the <code>success</code> callback of Ajax.</td>
+         </tr>
+      </tbody>
+   </table>
     <h1 id="toc_48">Methods</h1>
     <p>After Pagination intialized, you can change the behavior of the <code>.pagination</code> through the following supported methods.</p>
     <div>
@@ -564,7 +580,7 @@ container.addHook(&#39;afterRender&#39;, function(){
     <div>
        <pre><code class="language-none">&lt;link rel=&quot;stylesheet&quot; href=&quot;{yourAssetsServer}/pagination.css&quot; /&gt;</code></pre>
     </div>
-    <p>css &amp; less file: <a href="../dist/2.5.1/pagination.css">pagination.css</a> <a href="../dist/2.5.1/pagination.less">pagination.less</a></p>
+    <p>css &amp; less file: <a href="../dist/2.6.0/pagination.css">pagination.css</a> <a href="../dist/2.6.0/pagination.less">pagination.less</a></p>
     <p>For example, the blue theme:</p>
     <div>
        <pre><code class="language-none">className: &#39;paginationjs-theme-blue&#39;</code></pre>

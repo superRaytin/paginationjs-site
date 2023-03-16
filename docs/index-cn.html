@@ -6,7 +6,7 @@
     <title>Pagination.js | Docs</title>
     <link href="../css/base.css" rel="stylesheet">
     <link href="../css/prettify.css" rel="stylesheet">
-    <link href="../dist/2.5.1/pagination.css" rel="stylesheet">
+    <link href="../dist/2.6.0/pagination.css" rel="stylesheet">
     <link href="../css/style.css" rel="stylesheet">
 </head>
 
@@ -438,6 +438,22 @@ pageNum: 2</code></pre>
     <p>当 dataSource 是一个 URL，在分页初始化或重新初始化时重置页码为 <code>1</code></p>
     <h3 id="toc_48">hideOnlyOnePage <em>boolean (default <code>false</code>)</em></h3>
     <p>是否在只有 1 页时隐藏分页</p>
+    <h3 id="toc_481">onError <em>function(errorThrown, errorType)</em></h3>
+    <p>在渲染分页发生异常时执行，此函数有 2 个参数：错误对象和错误类型，错误类型见下表。</p>
+   <table>
+      <thead>
+         <tr>
+            <th>ErrorType</th>
+            <th>描述</th>
+         </tr>
+      </thead>
+      <tbody>
+         <tr>
+            <td>ajaxSuccessHandlerError</td>
+            <td>在执行 Ajax 的 <code>success</code> 回调函数时发生错误。</td>
+         </tr>
+      </tbody>
+   </table>
     <h1 id="toc_49">Methods</h1>
     <p>分页初始化之后，可以使用下面列出的方法来改变分页的行为</p>
     <div>
@@ -569,7 +585,7 @@ container.addHook(&#39;afterRender&#39;, function(){
     <div>
        <pre><code class="language-none">&lt;link rel=&quot;stylesheet&quot; href=&quot;{yourAssetsServer}/pagination.css&quot; /&gt;</code></pre>
     </div>
-    <p>css &amp; less 文件: <a href="../dist/2.5.1/pagination.css">pagination.css</a> <a href="../dist/2.5.1/pagination.less">pagination.less</a></p>
+    <p>css &amp; less 文件: <a href="../dist/2.6.0/pagination.css">pagination.css</a> <a href="../dist/2.6.0/pagination.less">pagination.less</a></p>
     <p>例如蓝色主题，可以这样使用：</p>
     <div>
        <pre><code class="language-none">className: &#39;paginationjs-theme-blue&#39;</code></pre>
